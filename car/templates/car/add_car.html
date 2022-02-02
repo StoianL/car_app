@@ -1,0 +1,13 @@
+{% extends 'car/base.html' %}
+
+{% block content %}
+<form action="" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Add car">
+</form>
+
+<p><a href="{% url 'add_brand' %}"> Add brand </a></p>
+
+{% endblock content %}
+

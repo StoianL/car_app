@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>car app</title>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="nav">
+      <ul>
+        <li>
+          <a href="{% url 'home' %}">Home</a>
+        </li>
+        <li>
+          <a href="{% url 'list_car' %}">List Car</a>
+        </li>
+        <li>
+          <a href="{% url 'add_car' %}"> Add car </a>
+        </li>
+      </ul>
+    </div>
+    <div class="search-section">
+      {% block search_section %}
+      {% endblock search_section %}
+    </div>
+  </div>
+
+  <hr>
+  
+  <div class="content">
+    {% block content %}
+    {% endblock content %}
+  </div>
+</body>
+</html>

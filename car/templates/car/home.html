@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+
+
+
+{% block search_section %}
+  <div class="brands">
+    <h4>Search by Brands</h4>
+    <ul>
+      <li><a href="{% url 'home'%}?q={{brand.name}}">All</a></li>
+    {% for brand in brands %}
+    <li><a href="{% url 'home'%}?q={{brand.name}}">{{brand.name}}</a></li>
+    {% endfor %}
+    </ul>
+  </div>
+   
+{% endblock search_section %}
+
+
+
+{% block content %}
+
+{% if msg_car_search %}
+<p>{{ msg_car_search }} <a href="{% url 'add_car' %}">Add Car</a> </p>
+{% endif %}
+
+
+{% if  objects_progress %}
+  <ul>
+  {% for rep in objects_progress %}
+    <li><a href="{% url 'detail_car' rep.car.id %}">{{rep.car.reg_num}}</a>  -- {{rep.car.vin_num}} -- {{rep.car.brand}} </li>
+    <p>search by: 
+      <a href="https://www.autodoc.ru/catalogs/original/modifications?vin={{ rep.car.vin_num}}" target="_blank">autodoc.ru</a>| 
+      <a href="https://e-shop.euro07.net/#/eurob2b/ArtSearch/4/{{ rep.car.vin_num}}" target="_blank">evro 07</a> 
+    </p>
+  {% endfor %}
+  </ul>
+{% else %} 
+  <h2>{{ msg }}</h2>
+{% endif %}
+<h4>List of car:</h4>
+<ul>
+{% for car in list_car %}
+  <li><a href="{% url 'detail_car' car.id %}">{{car.reg_num}}</a>  --  <small>{{car.brand}}</small></li>
+{% endfor %}
+</ul>
+
+{% endblock content %}
+
+

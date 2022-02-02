@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>car app</title>
+</head>
+<body>
+  <style>
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+
+  </style>
+  {% include 'nav.html' %}
+  <div class="container">
+    <div class="search-section">
+      {% block search_section %}
+      {% endblock search_section %}
+    </div>
+    <div class="content">
+      {% block content %}
+      {% endblock content %}
+    </div>
+  </div>
+</body>
+</html>

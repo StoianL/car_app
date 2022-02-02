@@ -1,0 +1,37 @@
+<style>
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+  .form-search {
+    padding-top: 10px;
+  }
+
+</style>
+
+
+
+<div class="wrapper">
+  <div class="nav">
+    <ul>
+      <li>
+        <a href="{% url 'home' %}">Home</a>
+      </li>
+      <li>
+        <a href="{% url 'add_car' %}"> Add car </a>
+      </li>
+      <li>
+        <a href="{% url 'list_car' %}">List Car</a>
+      </li>
+      <li>
+        <a href="{% url 'list_repair' %}">All Repair </a>
+      </li>
+    </ul>
+  </div>
+  <div class="form-search">
+    <form action="{% url 'home' %}" method="get">
+      <label for="search_input">Search:</label>
+      <input type="text" id="search_input" name="q" placeholder="reg_num vin_num ... ">
+    </form>
+  </div>
+</div>

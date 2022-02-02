@@ -1,0 +1,57 @@
+{% extends 'car/base.html' %}
+{% block content %}
+<style>
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+</style>
+  <h3>{{ obj }}</h3>
+  <div class="wrapper">
+    <p><a href="?add_repair={{obj.id}}">add repair</a></p>
+    <p> search in: 
+      <a href="https://www.autodoc.ru/catalogs/original/modifications?vin={{ obj.vin_num}}" target="_blank">autodoc</a> |
+      <a href="https://e-shop.euro07.net/#/eurob2b/ArtSearch/4/{{obj.vin_num}}" target="_blank">evro 07</a> 
+    </p> 
+  </div>
+  {% if  add_repair %}
+    <form action="." method='post'>
+      {% csrf_token %}
+      {{ repair_form.as_p }}
+      <label for="start_repair">Start repair:</label>
+      <input type="date" id="star_repair" name="created">
+      <input type="submit" value="Add repair" >
+    </form>
+  {% endif  %}
+  {% if  edit_repair %}
+    <form action="." method='post'>
+      {% csrf_token %}
+      {{ repair_form.as_p }}
+      <input type="submit" value="Edit repair" >
+    </form>
+  {% endif  %}
+  <ul>
+  {% for r in repair %}
+    <li>
+      <p>
+        created - {{r.created}} : updateted - {{r.updated}} | status - {{r.status}}
+      </p>
+      <p>
+        {{r.body}}
+      </p>
+      {% if r.status == "in_progress" %}
+      <p><a href="{% url 'edit_repair' r.id %}">eddit repair</a></p>
+      {% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+  
+
+  {% if  edit_repair %}
+    <p>edit repair</p>
+  {% endif  %}
+
+
+
+
+{% endblock content %}

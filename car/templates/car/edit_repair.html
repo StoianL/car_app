@@ -1,0 +1,29 @@
+{% extends 'car/base.html' %}
+{% block content %}
+<style>
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+</style>
+  <h3>{{ obj.car }}</h3>
+  <div class="wrapper">
+    <p>Edit repair </p>
+    <p>search in: 
+      <a href="https://www.autodoc.ru/catalogs/original/modifications?vin={{ obj.car.vin_num}}" target="_blank">autodoc.ru</a> |
+      <a href="https://e-shop.euro07.net/#/eurob2b/ArtSearch/4/{{ obj.car.vin_num}}" target="_blank">evro 07</a> 
+    </p>
+    <p> search in: autodoc | evro 07 </p>
+  </div>
+  <form action="." method='post'>
+    {% csrf_token %}
+    {{ forms.as_p }}
+    <input type="submit" value="Edit repair" >
+  </form>
+  
+
+
+
+
+
+{% endblock content %}
