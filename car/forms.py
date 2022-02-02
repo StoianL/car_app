@@ -17,4 +17,5 @@ class BrandForm(forms.ModelForm):
 class RepairForm(forms.ModelForm):
     class Meta:
         model = Repair
-        fields = ('body', 'status', )
+        fields = ('body', 'status', 'workman' )
+

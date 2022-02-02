@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Car, Brand, Repair
+from .models import Car, Brand, Repair, Employee
 
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):
@@ -18,3 +18,7 @@ class RepairAdmin(admin.ModelAdmin):
 class BrandAdmin(admin.ModelAdmin):
     list_display = ('name', )
     search_fileds = ('name', )
+
+@admin.register(Employee)
+class EmployeeAdmin(admin.ModelAdmin):
+    list_display = ('name', )

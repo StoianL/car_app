@@ -1,5 +1,15 @@
 from django.db import models
 
+class Employee(models.Model):
+    name = models.CharField(max_length=50)
+
+    class Meta:
+        ordering = ('name',)
+
+    def __str__(self):
+        return f'{self.name}'
+
+
 class Car(models.Model):
     reg_num = models.CharField(max_length=20)
     vin_num = models.CharField(max_length=20)
@@ -44,6 +54,7 @@ class Repair(models.Model):
     status = models.CharField(max_length=15, choices=STATUS_CHOICES, default='in_progress')
     car = models.ForeignKey('Car', on_delete=models.SET_NULL, related_name='repair', null=True)
 
+    workman = models.ManyToManyField('Employee', blank=True)
 
     objects = models.Manager() # The default managere.
     progress = StatusManager() # My custom manager.
