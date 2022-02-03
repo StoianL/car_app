@@ -1,17 +1,6 @@
-<style>
-  .wrapper {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-  }
-  .form-search {
-    padding-top: 10px;
-  }
-
-</style>
 
 
-
-<div class="wrapper">
+<div class="wrapper-nav">
   <div class="nav">
     <ul>
       <li>
@@ -31,7 +20,7 @@
   <div class="form-search">
     <form action="{% url 'home' %}" method="get">
       <label for="search_input">Search:</label>
-      <input type="text" id="search_input" name="q" placeholder="reg_num vin_num ... ">
+      <input type="text" id="search_input" name="q" placeholder="reg_num, vin_num ... ">
     </form>
   </div>
 </div>

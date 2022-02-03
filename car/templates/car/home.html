@@ -38,11 +38,18 @@
   <h2>{{ msg }}</h2>
 {% endif %}
 <h4>List of car:</h4>
-<ul>
-{% for car in list_car %}
-  <li><a href="{% url 'detail_car' car.id %}">{{car.reg_num}}</a>  --  <small>{{car.brand}}</small></li>
-{% endfor %}
-</ul>
+<table>
+    <tr>
+      <th>reg_num</th>
+      <th>brand</th>
+    </tr>
+  {% for car in list_car %}
+    <tr>
+      <td><a href="{% url 'detail_car' car.id %}">{{car.reg_num}}</a></td>
+      <td>{{car.brand}}</td>
+    </tr>
+  {% endfor %}
+  </table>
 
 {% endblock content %}
 

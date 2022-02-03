@@ -1,24 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="{% static 'car/style/main.css'%}">
   <title>car app</title>
 </head>
 <body>
-  <style>
-  .container {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-  }
-
-  </style>
   {% include 'nav.html' %}
+
+
+
   <div class="container">
     <div class="search-section">
       {% block search_section %}
       {% endblock search_section %}
     </div>
     <div class="content">
+      <img src="{% static 'car/img/logo.jpeg' %}" alt="My image">
       {% block content %}
       {% endblock content %}
     </div>

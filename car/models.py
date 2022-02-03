@@ -7,7 +7,7 @@ class Employee(models.Model):
         ordering = ('name',)
 
     def __str__(self):
-        return f'{self.name}'
+        return self.name
 
 
 class Car(models.Model):
@@ -29,7 +29,7 @@ class Brand(models.Model):
         ordering = ('name', )
 
     def __str__(self):
-        return f'{self.name}'
+        return self.name
 
 
 

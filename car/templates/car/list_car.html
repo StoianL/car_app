@@ -1,8 +1,17 @@
-{% extends 'car/base.html' %}
+{% extends 'main.html' %}
 {% block content %}
-  <ul>
-    {% for car in obj %}
-    <li><a href="{% url 'detail_car' car.id %}">{{car}}</a></li>
-    {% endfor %}
-  </ul>
+  <table>
+    <tr>
+      <th>Reg num</th>
+      <th>Vin num</th>
+      <th>Brand</th>
+    </tr>
+  {% for car in obj %}
+    <tr>
+      <td><a href="{% url 'detail_car' car.id %}">{{car.reg_num}}</a></td>
+      <td>{{car.vin_num}}</td>
+      <td>{{car.brand}}</td>
+    </tr>
+  {% endfor%}
+  </table>
 {% endblock content %}

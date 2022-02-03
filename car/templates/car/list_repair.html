@@ -1,15 +1,21 @@
 {% extends 'main.html' %}
 
 {% block search_section %}
+
+<style>
+
+</style>
+
+
   <h3> Search by date </h3>
 
   <form action="" method="post">
     {% csrf_token %}
     <p>
-      From:  <input type="date" name="from_date">
+      Start:  <input type="date" name="from_date">
     </p>
     <p>
-      To date: <input type="date" name="to_date">
+      End : <input type="date" name="to_date">
     </p>
     <input type="submit" value="Search">
   </form>
@@ -17,14 +23,45 @@
 {% block content %}
 {% if repair_from_date %}
 <h3>Resulr repair from {{start_date}} to {{end_date}}</h3>
+<table>
+    <tr>
+      <th>reg_num</th>
+      <th>created</th>
+      <th>repair</th>
+      <th>workman</th>
+    </tr>
   {% for repair in repair_from_date %}
-    <p>{{repair.car.reg_num}} --- {{repair.created}} -- {{repair}}</p>
+    <tr>
+      <td>{{repair.car.reg_num}}</td>
+      <td>{{repair.created|date:"d M y"}}</td>
+      <td>{{repair}}</td>
+      <td>{{repair.workman_set.all}}</td>
+    </tr>
   {% endfor %}
+  </table>
+
 {% else %}
 <h3> All Repair </h3>
+  <table>
+    <th>reg_num</th>
+    <th>created</th>
+    <th>repair</th>
+    <th>workman</th>
   {% for repair in repairs %}
-    <p>{{repair.car.reg_num}} --- {{repair.created}} -- {{repair}}</p>
+    <tr>
+      <td>{{repair.car.reg_num}}</td>
+      <td>{{repair.created|date:"d M y"}}</td>
+      <td>{{repair}}</td>
+      <td>
+    {% for work in repair.workman.all %}
+        <small>
+          {{work.name}},
+        </small>
+    {% endfor %}
+      </td>
+    </tr>
   {% endfor %}
+  </table>
   
 {% endif %}
 {% endblock content %}

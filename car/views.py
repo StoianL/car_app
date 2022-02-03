@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 from django.db.models import Q
-from .models import Car, Brand, Repair
+from .models import Car, Brand, Repair, Employee
 from .forms import AddCarForm, BrandForm, RepairForm
 import datetime
 
