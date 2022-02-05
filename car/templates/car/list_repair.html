@@ -35,7 +35,13 @@
       <td>{{repair.car.reg_num}}</td>
       <td>{{repair.created|date:"d M y"}}</td>
       <td>{{repair}}</td>
-      <td>{{repair.workman_set.all}}</td>
+       <td>
+    {% for work in repair.workman.all %}
+        <small>
+          <a href="{% url 'employee_repair' work.id %}">{{work.name}}</a>,
+        </small>
+    {% endfor %}
+      </td>
     </tr>
   {% endfor %}
   </table>
@@ -55,7 +61,7 @@
       <td>
     {% for work in repair.workman.all %}
         <small>
-          {{work.name}},
+          <a href="{% url 'employee_repair' work.id %}">{{work.name}}</a>,
         </small>
     {% endfor %}
       </td>

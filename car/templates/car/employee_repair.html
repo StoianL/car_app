@@ -1,0 +1,54 @@
+{% extends 'main.html' %}
+
+<!-- Employee repair html start  -->
+
+{% block search_section %}
+
+  <h3> Search by date </h3>
+
+  <form action="" method="post">
+    {% csrf_token %}
+    <p>
+      Start:  <input type="date" name="from_date">
+    </p>
+    <p>
+      End : <input type="date" name="to_date">
+    </p>
+    <input type="submit" value="Search">
+  </form>
+{% endblock search_section %}
+
+
+{% block content %}
+
+{% if start_date %}
+<h3>{{employee}}'s Repair from {{start_date}} to {{end_date}}</h3>
+{% else %}
+<h3>{{employee}}'s list repair</h3>
+{% endif %}
+<table>
+    <tr>
+      <th>reg_num</th>
+      <th>created</th>
+      <th>repair</th>
+      <th>brand</th>
+      <th>workman</th>
+    </tr>
+  {% for repair in list_repair %}
+    <tr>
+      <td><a href="{% url 'detail_car' repair.car.id %}">{{repair.car.reg_num}}</a></td>
+      <td>{{repair.created|date:"d M y"}}</td>
+      <td>{{repair}}</td>
+      <td>{{repair.car.brand}}</td>
+      <td>
+      {% for work in repair.workman.all %}
+        <small>
+          <a href="{% url 'employee_repair' work.id %}">{{work.name}}</a>,
+        </small>
+      {% endfor %}
+      </td>
+    </tr>
+  {% endfor %}
+  </table>
+{% endblock content %}
+<!-- Employee repair html end  -->

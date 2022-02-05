@@ -5,6 +5,27 @@ from .models import Car, Brand, Repair, Employee
 from .forms import AddCarForm, BrandForm, RepairForm
 import datetime
 
+def employee_repair_view(request, pk):
+
+    employee = get_object_or_404(Employee, id=pk)
+    context = {'employee': employee}
+    if request.method == "POST":
+        start_date = request.POST.get('from_date')
+        end_date = request.POST.get('to_date') 
+        list_repair = Repair.objects.filter(
+            Q(workman__id=employee.id) &
+            Q(created__range=(start_date, end_date)) 
+            )
+        context['list_repair'] = list_repair
+        context['start_date'] = start_date
+        context['end_date'] = end_date
+        return render(request, 'car/employee_repair.html', context)
+    else:
+        list_repair = employee.repair_set.all()
+        context['list_repair'] = list_repair 
+        return render(request, 'car/employee_repair.html', context)
+
+
 
 def list_repair(request):
 
